@@ -24,7 +24,7 @@
 #  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #  SUCH DAMAGE.
 #
-# $Id: Makefile,v 1.2 2005/03/28 11:27:49 mindtrap Exp $
+# $Id: Makefile,v 1.3 2005/03/28 11:31:17 mindtrap Exp $
 
 .include "${.CURDIR}/cfg/main.cfg"
 
@@ -268,7 +268,7 @@ stage51:
 	  cp -p ${CHROOT}/COPYRIGHT ${TMP_MFS} && \
 	  cp -p ${CHROOT}/libexec/* ${TMP_MFS}/libexec && \
 	  cp -Rp ${CHROOT}/lib/* ${TMP_MFS}/lib && \
-	  cp -p ${.CURDIR}/build.bootstage/etc/* ${TMP_MFS}/etc \
+	  cp -Rp ${.CURDIR}/build.bootstage/etc/* ${TMP_MFS}/etc \
 	) &&
 .for prg in ${FILE_LIST}
 	${_+_}@cd ${TMP_MFS}; ln sbin/rescuebsd_loader sbin/${prg}
