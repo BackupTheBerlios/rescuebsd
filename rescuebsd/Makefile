@@ -24,7 +24,7 @@
 #  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #  SUCH DAMAGE.
 #
-# $Id: Makefile,v 1.1 2005/03/16 12:23:20 mindtrap Exp $
+# $Id: Makefile,v 1.2 2005/03/28 11:27:49 mindtrap Exp $
 
 .include "${.CURDIR}/cfg/main.cfg"
 
@@ -198,6 +198,7 @@ stage33:
 	@echo "---> Stage 3.3: building language packages"
 .if !exists(${.CURDIR}/state/stage33)
 	${_+_}@cd ${.CURDIR}/build.lang/ ; ${MAKE} all 
+	touch ${.CURDIR}/state/stage33
 .else
 	@echo "--> Stage 3.3 allready finished"
 .endif
