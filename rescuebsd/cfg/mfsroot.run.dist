@@ -1,0 +1,113 @@
+/set type=file uid=0 gid=0 mode=0755 nlink=1 flags=none
+.               type=dir nlink=15 size=512 time=1110146125.0
+    tmp         type=link size=8 time=1110146118.0 link=/var/tmp
+
+# ./.snap
+.snap           type=dir gid=5 mode=0775 nlink=2 size=512 \
+                time=1110145698.0
+# ./.snap
+..
+
+
+# ./bin
+bin             type=dir nlink=2 size=512 time=1110146085.0
+# ./bin
+..
+
+
+# ./boot
+boot            type=dir nlink=2 size=512 time=1110146087.0
+# ./boot
+..
+
+
+# ./dev
+dev             type=dir nlink=2 size=512 time=1110146090.0
+# ./dev
+..
+
+
+# ./etc
+etc             type=dir nlink=2 size=512 time=1110146092.0
+# ./etc
+..
+
+
+# ./lib
+lib             type=dir nlink=2 size=512 time=1110146095.0
+# ./lib
+..
+
+
+# ./libexec
+libexec         type=dir nlink=2 size=512 time=1110146099.0
+# ./libexec
+..
+
+
+# ./mnt
+mnt             type=dir nlink=6 size=512 time=1110146158.0
+
+# ./mnt/nfs
+nfs             type=dir nlink=2 size=512 time=1110146148.0
+# ./mnt/nfs
+..
+
+
+# ./mnt/smb
+smb             type=dir nlink=2 size=512 time=1110146144.0
+# ./mnt/smb
+..
+
+
+# ./mnt/tmp
+tmp             type=dir nlink=2 size=512 time=1110146154.0
+# ./mnt/tmp
+..
+
+
+# ./mnt/umass
+umass           type=dir nlink=2 size=512 time=1110146156.0
+# ./mnt/umass
+..
+
+# ./mnt/cdrom
+cdrom           type=dir nlink=2 size=512 time=1110146156.0
+# ./mnt/cdrom
+..
+
+# ./mnt
+..
+
+
+# ./proc
+proc            type=dir nlink=2 size=512 time=1110146101.0
+# ./proc
+..
+
+
+# ./root
+root            type=dir nlink=2 size=512 time=1110146104.0
+# ./root
+..
+
+
+# ./sbin
+sbin            type=dir nlink=2 size=512 time=1110146106.0
+# ./sbin
+..
+
+
+# ./usr
+usr             type=dir nlink=2 size=512 time=1110146108.0
+# ./usr
+..
+
+
+# ./var
+var             type=dir nlink=2 size=512 time=1110146111.0
+# ./var
+..
+
+..
+

@@ -1,0 +1,108 @@
+#!/bin/sh
+# rescueBSD - an advanced 'fixit' version of FreeBSD5
+#
+# Copyright (c) 2005	- Gordon Bergling
+#
+# This Script will be executed right after the kernel was booted and
+# init was called.
+#
+# At first it mounts the rescueBSD LiveCD and mount the compressed
+# read only filesystems.
+# At the second stage the mfs filesystem will be generated and 
+# populated.
+#
+#
+# $Id: rc,v 1.1 2005/03/16 12:23:35 mindtrap Exp $
+
+trap : 2	# Don't interrupt this script
+
+# Stage 1
+# Mount the cdrom
+#
+echo "mounting cdrom..."
+/sbin/mount_cd9660 /dev/acd0 /mnt/cdrom
+
+# Stage 2
+# Mount the compressed filesystem images
+#
+echo "mounting compressed filesystems..."
+for file in bin boot lib sbin usr
+do
+	echo -n "[$file] "
+	MFS_DEV=`/sbin/mdconfig -a -f /mnt/cdrom/rescueBSD/${file}.uzip`
+	/bin/sleep 1
+	/sbin/mount_cd9660 /dev/${MFS_DEV}.uzip /${file}
+done
+
+# Stage 3
+# Mount the mfs images and populate them
+#
+echo "creating and mounting mfs filesystems..."
+echo -n "/etc "  
+MD_DEV=`/sbin/mdconfig -a -t malloc -o compress -s 2m`
+/sbin/newfs -b 8192 -f 1024 /dev/${MD_DEV} >/dev/null 2>&1
+/sbin/mount -o noatime /dev/${MD_DEV} /etc
+tar -xypf /mnt/cdrom/rescueBSD/etc.tbz -C /
+
+echo -n "/var "
+MD_DEV=`/sbin/mdconfig -a -t malloc -o compress -s 30m`
+/sbin/newfs -b 8192 -f 1024 /dev/${MD_DEV} >/dev/null 2>&1
+/sbin/mount -o noatime /dev/${MD_DEV} /var
+tar -xypf /mnt/cdrom/rescueBSD/var.tbz -C /
+
+echo -n "/root"
+MD_DEV=`/sbin/mdconfig -a -t malloc -o compress -s 5m`
+/sbin/newfs -b 8192 -f 1024 /dev/${MD_DEV} >/dev/null 2>&1
+/sbin/mount -o noatime /dev/${MD_DEV} /root
+tar -xypf /mnt/cdrom/rescueBSD/root.tbz -C /
+echo ""
+echo "finished..."
+
+# Stage 4
+# the user have to choose the keyboard layout
+#
+SETLANG="E"
+DELAY="10"
+
+printf " Please select your language (English is default).\n"
+printf "    Press 'e' for English language.\n"
+printf "    Press 'd' for German language.\n"
+printf "    Press 'c' for Swiss language.\n"
+printf "    Press 'r' for Russian language.\n"
+printf " Input your choice and press Enter (${DELAY} seconds): "
+read -t ${DELAY}s SETLANG
+echo
+
+case ${SETLANG} in
+E|e)
+  printf " English language "
+  tar -C / -xypf /mnt/cdrom/rescueBSD/lang/lang_en.tbz
+  /usr/sbin/pw usermod root -L ""
+  printf "loaded.\n"
+;;
+
+D|d)
+  printf " German language "
+  tar -C / -xypf /mnt/cdrom/rescueBSD/lang/lang_de.tbz
+  /usr/sbin/pw usermod root -L ""
+  printf "loaded.\n"
+;;
+
+C|c)
+  printf " Swiss language "
+  tar -C / -xypf /mnt/cdrom/rescueBSD/lang/lang_ch.tbz
+  /usr/sbin/pw usermod root -L ""
+  printf "loaded.\n"
+;;
+
+R|r)
+  printf " Russian language "
+  tar -C / -xypf /mnt/cdrom/rescueBSD/lang/lang_ru.tbz
+  /usr/sbin/pw usermod root -L ""
+  printf "loaded.\n"
+;;
+esac
+
+# Finally the System rc will be executed
+echo "Executing system rc"
+exec /bin/sh /etc/rc

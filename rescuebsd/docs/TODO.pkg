@@ -1,0 +1,20 @@
+# packages which should be include in the final image
+
+-	mini httpd
+-	mysql-client (4.1)
+-	nmap
+-	zsh
+-	irssi
+-	screen
+-	licq (command-line)
+-	tripwire
+-	ncftp
+-	wget
+-	fetchmail
+-	procmail
+-	lynx, links, w3m
+-	gnupg
+-	dsniff
+-	bsdairtools
+-	kismet
+-	perl
