@@ -24,7 +24,7 @@
 #  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #  SUCH DAMAGE.
 #
-# $Id: Makefile,v 1.4 2005/03/28 11:42:43 mindtrap Exp $
+# $Id: Makefile,v 1.5 2005/03/31 16:52:39 mindtrap Exp $
 
 .include "${.CURDIR}/cfg/main.cfg"
 
@@ -294,6 +294,7 @@ stage52:
 .if !exists(${.CURDIR}/state/stage52)
 	cp -R ${CHROOT}/boot ${CDROOT}/
 	rm -f ${CDROOT}/boot/kernel/*.ko
+	cp -R ${CHROOT}/boot/kernel/acpi.ko ${CDROOT}/boot/kernel
 	cp -R ${.CURDIR}/build.bootstage/loader.conf ${CDROOT}/boot/
 .if !exists(${CDROOT}/rescueBSD)
 	mkdir ${CDROOT}/rescueBSD
