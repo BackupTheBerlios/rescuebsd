@@ -24,7 +24,7 @@
 #  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #  SUCH DAMAGE.
 #
-# $Id: Makefile,v 1.3 2005/03/28 11:31:17 mindtrap Exp $
+# $Id: Makefile,v 1.4 2005/03/28 11:42:43 mindtrap Exp $
 
 .include "${.CURDIR}/cfg/main.cfg"
 
@@ -187,9 +187,10 @@ stage31:
 .endif
 		
 stage32:
-	@echo "---> Stage 3.2: "
+	@echo "---> Stage 3.2: install customized /etc"
 .if !exists(${.CURDIR}/state/stage32)
-
+	${_+_}@cd ${.CURDIR}/build.environment/ ; ${MAKE} all
+	touch ${.CURDIR}/state/stage32
 .else
 	@echo "--> Stage 3.2 allready finished"
 .endif
