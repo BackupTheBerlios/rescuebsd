@@ -1,15 +1,15 @@
 - mfsroot
   -> /etc/rc
-    - make malloc of mfs disc smarter (ram size detection)
+    - make malloc of mfs discs smarter (ram size detection)
   -> general
-    - consider a smaller size of the mfsroot
-    - sort unneccessary file out of the crunchgen binary
+    - consider a smaller size for the mfsroot
+    - sort unneccessary files out of the crunchgen binary
 
 - generell
   -> Makefile:
-    - mkiosfs -parameter
+    - mkiosfs - parameter
 
 - documentation
   -> write the readme file
-  -> comments the Makefiles
+  -> comment the Makefiles
   -> write a generall overview about the whole build
